@@ -1,14 +1,25 @@
 const express= require("express");
+const bodyParser=require("body-parser");
 
 const https=require("https");
 
 const app = express();
+app.use(bodyParser.urlencoded({extented:true}));
 
 app.get("/",function(req,res)
 
 {
+     res.sendFile(__dirname+"/index.html")
+  
+}); 
+// as the method post the data is send and we catch it using below method
 
-  const query="Delhi";
+app.post("/",function(req,res)
+{
+
+
+
+const query=req.body.cityName;
   const units="metric";
     const apiKey="a254af5db767af45f14e8a85fa53c6e6";
     const url="https://api.openweathermap.org/data/2.5/weather?q="+query+"&appid="+apiKey+"&units="+units;
@@ -39,7 +50,17 @@ app.get("/",function(req,res)
       
        })
     })
+
+
+
+
+
 })
+
+
+
+
+
 
 
 app.listen(3000,function()
