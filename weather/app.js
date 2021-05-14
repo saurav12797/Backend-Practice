@@ -25,11 +25,11 @@ app.get("/",function(req,res)
           const  speed=WeatherData.wind.speed;
           const  name=WeatherData.name;
 
-          const icon=WeatherData.weather[0].icon;
+         /*  const icon=WeatherData.weather[0].icon;
 
           const imageURL="http://openweathermap.org/img/wn/"+ icon +"@2x.png";
 
-          res.write("<img src="+ imageURL+">");
+          res.write("<img src="+ imageURL+">"); */
 
            res.write(`<h1>Temperature of ${name} is ${temp} degree<h1>`);
            res.write(`<h2>The wind is blowing at speed of ${speed} and humidity is ${humidity} <h2>`);
