@@ -9,9 +9,9 @@ app.get("/",function(req,res)
 {
 
   const query="Delhi";
-  const unit="metric";
+  const units="metric";
     const apiKey="a254af5db767af45f14e8a85fa53c6e6";
-    const url="https://api.openweathermap.org/data/2.5/weather?q="+query+"&appid="+apiKey+"&units="+unit;
+    const url="https://api.openweathermap.org/data/2.5/weather?q="+query+"&appid="+apiKey+"&units="+units;
 
     https.get(url,function(response)   //https.get(url,call backfunction) CALL BACK FUNCTION G IVES THE RESPONSE
     {
