@@ -1,14 +1,30 @@
 const express= require("express");
+const bodyParser=require("body-parser");
 
 const https=require("https");
 
 const app = express();
+app.use(bodyParser.urlencoded({extented:true}));
 
 app.get("/",function(req,res)
-{
-    const url="https://api.openweathermap.org/data/2.5/weather?q=Delhi&appid=a254af5db767af45f14e8a85fa53c6e6&units=metric";
 
-    https.get(url,function(response)   //https.get(url,call backfunction) CALL BACK FUNCTION GIVES THE RESPONSE
+{
+     res.sendFile(__dirname+"/index.html")
+  
+}); 
+// as the method post the data is send and we catch it using below method
+
+app.post("/",function(req,res)
+{
+
+
+
+const query=req.body.cityName;
+  const units="metric";
+    const apiKey="a254af5db767af45f14e8a85fa53c6e6";
+    const url="https://api.openweathermap.org/data/2.5/weather?q="+query+"&appid="+apiKey+"&units="+units;
+
+    https.get(url,function(response)   //https.get(url,call backfunction) CALL BACK FUNCTION G IVES THE RESPONSE
     {
          
       console.log(response.statusCode) ;//status code gives error to identify like 200- ok  404 - sever not found 
@@ -24,47 +40,27 @@ app.get("/",function(req,res)
           const humidity=WeatherData.main.humidity;
           const  speed=WeatherData.wind.speed;
           const  name=WeatherData.name;
-
-         /*  const icon=WeatherData.weather[0].icon;
-
-          const imageURL="http://openweathermap.org/img/wn/"+ icon +"@2x.png";
-
-          res.write("<img src="+ imageURL+">"); */
+          
 
            res.write(`<h1>Temperature of ${name} is ${temp} degree<h1>`);
            res.write(`<h2>The wind is blowing at speed of ${speed} and humidity is ${humidity} <h2>`);
            res.send();
           
 
-          
-
-           
-
-          //or
-
-        // res.write("humidity is "+humidity)
-        //res.write("speed is"+ speed)
-        
-
-
-
-         //console.log(WeatherData);
-
-         //OR using OBJECTS
-/* 
-            const object={
-              name:"saurav", 
-              fav_food:"pizza"
-
-            }
-            console.log(JSON.stringify(object)); //converting into single string JSON FILE */
-
-
-
-
+      
        })
     })
+
+
+
+
+
 })
+
+
+
+
+
 
 
 app.listen(3000,function()
