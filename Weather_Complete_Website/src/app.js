@@ -6,10 +6,15 @@ const port= process.env.PORT || 3000; // process env is when we host our website
 
 app.get("/",(req,res)=> {
 
-    res.send("Welcome to my channel")        // express syntax in node we write res.add
+    res.send("Welcome to my channel")  ;      // express syntax in node we write res.add
 
 })
 
+app.get("money",(req,res)=> {
+
+    res.send("Welcome to my channel")  ;      // express syntax in node we write res.add
+
+})
 
 app.get("/about",(req,res)=> {
 
