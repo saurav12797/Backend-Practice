@@ -17,7 +17,7 @@ res.render('room'); //just render the room file
 
    
 
-//res.status(200).send("hello world"); //This function accepts single parameter code that holds the HTTP status code. and 200 stands for everything os ok
+//res.status(200).send("helo world"); //This function accepts single parameter code that holds the HTTP status code. and 200 stands for everything os ok
 
 
 })
