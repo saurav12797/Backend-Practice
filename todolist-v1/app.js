@@ -4,6 +4,12 @@ const bodyParser = require("body-parser");
 const app = express();
 
 app.set("view engine", "ejs"); // always below express // using of ejs with express module
+app.use(bodyParser.urlencoded({extended:true}));
+
+app.use(express.static("public"));
+
+
+var items=["Coding Practice"]; //declaring globl because app.get has to access outside app.post . Everytime new item will be added
 
 //our view engine by default will look into view folder
 
@@ -17,6 +23,27 @@ app.get("/", function (req, res) {
   };
 
   var day= today.toLocaleDateString("en-US",options);
+  
+  res.render("list", { kindOfDay: day ,newListItems:items}); // earlier -res.sendFile(__dirname,"/weekend.html");
+});
+
+
+
+app.post("/",function(req,res){  // when user click submit button to send item
+    
+   item=req.body.newItem;  // this to grab data from input we need body parser
+  
+   items.push(item);
+  res.redirect("/");// it will redirect to app.js and will run app.get where the rending will take place in res.render("list", { kindOfDay: day ,newListItem:item});
+  
+  
+  
+  //list is here list.ejs passed from req.body.newItem
+
+  // everytime we render we have to receiver this item in ejs file. Here we are sending the updated list to the user
+
+    
+})
 
 
 
@@ -62,8 +89,6 @@ app.get("/", function (req, res) {
  */
  
 
-  res.render("list", { kindOfDay: day }); // earlier -res.sendFile(__dirname,"/weekend.html");
-});
 
 app.listen(3000, function () {
   console.log("server started");
