@@ -9,7 +9,28 @@ app.set("view engine", "ejs"); // always below express // using of ejs with expr
 
 app.get("/", function (req, res) {
   var today = new Date();
-  var currentDay = today.getDay();
+
+  var options={
+    weekday:"long",
+    day:"numeric",
+    month:"long"
+  };
+
+  var day= today.toLocaleDateString("en-US",options);
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* var currentDay = today.getDay();
   var day = "";
 
   switch (currentDay) {
@@ -38,7 +59,7 @@ app.get("/", function (req, res) {
     default:
     console.log("error");
   }
-
+ */
  
 
   res.render("list", { kindOfDay: day }); // earlier -res.sendFile(__dirname,"/weekend.html");
